@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<nav class="navbar navbar-light">
+    <a class="navbar-link btn-lg" href="{% url 'index' %}" >Employee List</a>
+    <a href="{% url 'add-employee' %}" class="navbar-link btn-lg" >Add Employee</a>
+	<a href="{% url 'loggedout' %}" class="navbar-link btn-lg" >log out</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns">
+    {% for employee in empall %}
+	<div class="card" style="width: 18rem;">
+    <div class="card-body">
+	
+	<h5 class="card-title">{{ employee.name }}</h5>
+	<h8 class="card-title">{{ employee.email }}</h8>
+	
+   <div class="card-footer bg-transparent border-dark">
+   <p class="card-title">{{employee.Employee_id}}</p>
+   <center>
+       <a href="update/{{employee.id}}"  id = '{{employee.id}}'>edit</a>
+       <a href="delete/{{employee.id}}"  id = '{{employee.id}}'>delete</a>
+    </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>
